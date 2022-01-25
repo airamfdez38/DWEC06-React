@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
 import './index.css';
 
 // Paso 1.1
 // Aquí tenemos un componente clase, el cual ya tiene incorporada la función useState
-class Clock extends React.Component {
+/*class Clock extends React.Component {
   constructor(props) {
     // Paso 2.2
     super(props);
@@ -43,8 +43,13 @@ class Clock extends React.Component {
   }
 }
 
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
 // Si queremos utilizar el useState FUERA de una clase, necesitamos utilizar el HOOK useState. Recordar importarlo con -import React, { useState } from "react";-
-const Item = ({label}) => {
+/*const Item = ({label}) => {
   const [checked, setChecked] = useState(true);
   return (
     <p onClick={() => setChecked(!checked)}>
@@ -118,4 +123,23 @@ function tick() {
   );
 }
 
-setInterval(tick, 1000);
+setInterval(tick, 1000);*/
+
+const Clock = () => {
+  const [clock, setClock] = useState(new Date());
+
+  function refresh(){
+    setClock(new Date())
+  }
+
+  useEffect(() => {
+    const interval = setInterval(refresh,1000);
+    return () => clearInterval(interval);
+  });
+  return <p>Son las {clock.toLocaleTimeString()}</p>
+}
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
