@@ -136,7 +136,7 @@ const Clock = () => {
     const interval = setInterval(refresh,1000);
     return () => clearInterval(interval);
   });
-  return <p>Son las {clock.toLocaleTimeString()}</p>
+  return <h2>Son las {clock.toLocaleTimeString()}</h2>
 }
 
 ReactDOM.render(
